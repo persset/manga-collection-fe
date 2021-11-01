@@ -21,11 +21,11 @@ function CreateAuthor() {
       <main>
         <div className="main-content">
           <form onSubmit={handleCreateAuthor}>
-            <label htmlFor="author_name">Nome: </label>
+            <label htmlFor="author-name">Nome: </label>
             <input
               type="text"
-              name="author_name"
-              id="author_name"
+              name="author-name"
+              id="author-name"
               onChange={(event) => setName(event.target.value)}
               value={name}
             />
