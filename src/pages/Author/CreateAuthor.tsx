@@ -12,7 +12,6 @@ function CreateAuthor() {
     } catch (error) {
       const err = error as AxiosError;
       alert(err.response?.data);
-    } finally {
     }
   }
 

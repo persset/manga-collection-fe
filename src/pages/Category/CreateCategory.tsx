@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import api from "../../services/api";
 
@@ -6,6 +7,13 @@ function CreateCategory() {
 
   async function handleCreateCategory(event: FormEvent) {
     event.preventDefault();
+
+    try {
+      await api.post("/categories", { name });
+    } catch (error) {
+      const err = error as AxiosError;
+      alert(err.response?.data);
+    }
   }
 
   return (
