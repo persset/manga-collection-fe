@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import api from "../../services/api";
 
@@ -7,6 +8,13 @@ function CreateUser() {
   const [password, setPassword] = useState("");
   async function handleCreateUser(event: FormEvent) {
     event.preventDefault();
+
+    try {
+      await api.post("/users", { name, email, password });
+    } catch (error) {
+      const err = error as AxiosError;
+      alert(err.response?.data);
+    }
   }
 
   return (
