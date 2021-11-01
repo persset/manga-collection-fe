@@ -1,10 +1,19 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
+import api from "../../services/api";
 
 function CreatePublisher() {
   const [name, setName] = useState("");
 
   async function handleCreatePublisher(event: FormEvent) {
     event.preventDefault();
+
+    try {
+      await api.post("/publishers", { name });
+    } catch (error) {
+      const err = error as AxiosError;
+      alert(err.response?.data);
+    }
   }
 
   return (
