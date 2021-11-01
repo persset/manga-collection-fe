@@ -1,5 +1,6 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
-import { setTokenSourceMapRange } from "typescript";
+import api from "../../services/api";
 
 function CreateSeries() {
   const [name, setName] = useState("");
@@ -9,6 +10,19 @@ function CreateSeries() {
   const [currentOriginVolumes, setCurrentOriginVolumes] = useState("");
   async function handleCreateSeries(event: FormEvent) {
     event.preventDefault();
+
+    try {
+      await api.post("/series", {
+        name,
+        publisher,
+        countryOfOrigin,
+        currentVolumes,
+        currentOriginVolumes,
+      });
+    } catch (error) {
+      const err = error as AxiosError;
+      alert(err.response?.data);
+    }
   }
   return (
     <div id="page-create-manga">
