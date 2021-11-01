@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import api from "../../services/api";
 
@@ -5,7 +6,14 @@ function CreateGenre() {
   const [name, setName] = useState("");
 
   async function handleCreateGenre(event: FormEvent) {
-    event.preventDefault;
+    event.preventDefault();
+
+    try {
+      await api.post("/genres", { name });
+    } catch (error) {
+      const err = error as AxiosError;
+      alert(err.response?.data);
+    }
   }
 
   return (
