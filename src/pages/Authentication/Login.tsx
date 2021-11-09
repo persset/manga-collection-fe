@@ -1,4 +1,5 @@
 import "../../styles/login.scss";
+import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
             <input type="text" placeholder="Email" />
             <input type="password" placeholder="Senha" />
 
-            <button type="submit">Entrar</button>
+            <Button type="submit">Entrar</Button>
           </form>
           <p>
             Não tem uma conta?
